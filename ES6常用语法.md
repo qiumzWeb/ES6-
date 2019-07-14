@@ -92,20 +92,45 @@
         Object.assign() 只 拷贝 可枚举 （enumerable: true）和自身属性，
         不可枚举 和 继承属性不会被拷贝
 
-# 获取对象的属性 值 并输出为 数组  Object.keys() Object.values() Object.entries()
+# 获取对象私有的属性 值 并输出为 数组  
+## Object.keys() Object.values() Object.entries()
+## Object.getOwnPropertyNames()  Object.getOwnPropertySymbols()
+## Reflect.ownKeys()
 
     使用方法：
 
-        let a = {a:1, b:2, c:3}
+        let a = {a:1, b:2, c:3, [Symbol('a')]:1}
+        Object.defineProperty(a, 'd' , {
+            value: 4,
+            writable: true,
+            configurable: true,
+            enumberable: false,
+        })
 
         1、 获取对象的 key 值 ： 
+
             Object.keys(a) =>  ['a', 'b', 'c']
 
         2、获取对象的 value 值：
+
             Object.values(a) => [1, 2, 3]
         
         3、获取对象的  key 和 value 值：
+
             Object.entries(a) => [['a', 1], ['b', 2], ['c', 3]]
+        
+        4、获取对象 的key 值 ，包括不可枚举的，但不包括 Symbol 属性
+
+            Object.getOwnPropertyNames(a) => ['a', 'b', 'c', 'd']
+
+        5、获取对象 所有 的 Symkol 属性 的 key 值
+
+            Object.getOwnPropertySymbols(a)  => [Symbol(a)]
+
+        6、获取对象 所有属性 的key
+
+            Reflect.ownKeys(a) => ["a", "b", "c", "d", Symbol(a)]
+
 
 # 异步对象 Promise  ， 异步函数  new Promise()
 
@@ -426,6 +451,47 @@
 
         })
 
+# 判断 字符串是否 包含 某 字符 
+## String.includes()
+## String.startsWith()
+## String.endsWith()
 
+    使用方法：
+        let a = 'mkl'
+        a.includes('m') => true
+        a.startsWith('m') => true
+        a.endsWith('l') => true
 
+# 新增 ... 遍历符
+
+    使用方法：
+        可以使用 ...  遍历可遍历的 东东 
+        1、遍历对象
+            let a = {a:1, b:2}
+            let b = {...a}  =>  {a:1, b:2}
+        
+        2、 遍历数组 
+
+            let a = [1, 2]
+            let b = [...a]  => [1, 2]
+
+        3、 遍历 Set 
+
+            let a = new Set([1,1,2])
+            let b = [...a]  => [1, 2]
+        
+        4、 遍历 Map
+
+            let a = new Map([['a',1],['b', 2]])
+            let b = [...a] =>  [['a',1],['b', 2]]
+
+        5、 遍历 字符串
+
+            let a= 'mkl'
+            let b = [...a] => ['m', 'k', 'l']
+
+        6、遍历 参数 
+
+            let a = (...args) => {console.log(...args)}
+            a(1,2,3,4,5) => 1, 2, 3, 4, 5
 
