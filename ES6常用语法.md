@@ -495,3 +495,29 @@
             let a = (...args) => {console.log(...args)}
             a(1,2,3,4,5) => 1, 2, 3, 4, 5
 
+# 新增 数据 类型 Symbol 
+
+    使用方法：
+
+        Symbol()
+
+        javaScript 现有的 六种数据 类型：
+
+            undefined  null  Boolean  String  Number  Object
+
+        Symbol 为第七种 数据 类型
+
+            即 : 独 一 无 二 ， 唯 一 一 种 自身不等于身 的数据 类型
+
+            Object.is(Symbol(), Symbol())  => false
+
+            Object.is(undefined, undefined) => true
+
+            Object.is(null, null) => true
+
+            Object.is(false, false)  => true
+
+            Object.is(NaN, NaN) => true
+
+
+
