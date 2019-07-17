@@ -1,3 +1,43 @@
+# Array 对象 的 自身方法
+
+## Array.isArray(Obj)
+
+    使用说明 ：
+
+        判断一个对象是不是数组 ，返回 Boolean 值 
+
+    使用方法:
+
+        Array.isArray([]) => true
+
+        Array.isArray({}) => false
+
+## Array.from(alikeArr,callback)     `*ES6 新增语法*`
+
+    使用说明 ： 
+
+        将一个 可遍历的 对象 或 伪数组 转换成 一个新的数组，
+        如果 callback 存在，则每次 生成 子元素 时会调用 callback, 
+        并把该 以参数 传给 callback, 最后取 callback() 返回的值 为新子元素
+
+    使用方法：
+
+        Array.from([1,2,3]) => [1,2,3]
+
+        Array.from([1,2,3], value => value + 1)  => [2, 3, 4]
+
+## Array.of(...arg)    `*ES6 新增语法*`
+
+    使用说明 ：
+
+        将 一 组 参数  转换成 一个新的 数组
+
+    使用方法： 
+
+        Array.of(1,2,3,4) =>  [1,2,3,4]
+
+
+# Array 原型 继续 的方法
 # 会改变原数组的方法
 
 ## Array.copyWithin(index, start = 0, end = this.length)   `*ES6 新增语法*`
@@ -194,9 +234,325 @@
         a.join()  =>  1,2,3,4
         a.join('?') => 1?2?3?4
 
+## Array.slice(start, end)
+
+    使用说明：
+
+        将一个数组 中截取某一段 并返回为一个新数组 
+            start : 数组的起始位置 （包含）, 默认为0
+            end: 数组 的结束位置 （不包含）,默认 为 arr.length
+        
+    使用方法： 
+
+        let a = [1,2,3,4]
+
+        a.slice() => [1,2,3,4]
+
+        a.slice(0,2) => [1,2]
+
+## Array.indexOf(value)
+
+    使用说明：
+
+        返回 数组 中第一个 值 等于 value 的元素的 index 索引 值 ，
+        如果找不到元素 则返回 -1
+
+    使用方法： 
+
+        let a = [1,1,2,2,2]
+        a.indexOf(2) => 2
+
+## Array.lastIndexOf(value)
+
+    使用说明;
+
+        返回数组 中最后一个 值 等于value 的元素的 index 索引 值 。
+        如果找不到元素 则返回 -1
+
+    使用方法： 
+
+        let a= [1,1,2,3,1,2]
+        a.lastIndexOf(1) => 4
+
+## Array.flat(depth)    `*ES6新增语法*`
+
+    使用说明 ： 
+
+        将 多维数组 进行扁平处理 生成一个新 的 低 维 数组 ，扁平的深度 由 参数 depth 决定， depth 默认值 为 1
+
+    使用方法 ：
+
+        let a = [1, [2,3], [4, [6,7]]]
+
+        a.flat()  => [1, 2, 3, 4, [6, 7]]
+
+        a.flat(2) => [1, 2, 3, 4, 6, 7]
+
+# 数组 的遍历
+
+## Array.forEach(callback)
+
+    使用说明 ：
+
+        对数组 进行遍历
+        callback 提供的参数 如下：
+            callback(value, index, arr)
+
+            value => 被遍历的值
+            index => 被遍历值的 索引
+            arr =>  当前 被遍历的数组
+
+    使用方法：
+        let b= []
+        [1,2,3,4].forEach(value => b.push(value))  
+
+        b => [1,2,3,4]
+
+## Array.entries()    `*ES6新增语法*`
+
+    使用说明 ：
+
+        返回一个 可遍历对象，遍历的值 为键值对
+
+    使用方法： 
+
+        let a = [1,2,3]
+        for (let [key,value] of a.entries()) {
+            console.log(key, value)
+        }
+
+## Array.keys()    `*ES6新增语法*`
+            
+    使用说明 ：
+
+        返回一个 可遍历对象，遍历的值 为 键
+
+    使用方法： 
+
+        let a = [1,2,3]
+        for (let key of a.keys()) {
+            console.log(key)
+        }
+
+ 
+## Array.values()    `*ES6新增语法*`
+            
+    使用说明 ：
+
+        返回一个 可遍历对象，遍历的值 为 值
+
+    使用方法： 
+
+        let a = [1,2,3]
+        for (let value of a.values()) {
+            console.log(value)
+        }
+
+## Array.some(callback)
+
+    使用说明 ：
+
+        对数组 进行遍历， 如果 callback() 返回 true 则中止 遍历，返回 true,
+        否则 返回 false
+        callback 提供的参数 如下：
+            callback(value, index, arr)
+
+            value => 被遍历的值
+            index => 被遍历值的 索引
+            arr =>  当前 被遍历的数组
+
+    使用方法：
+        
+        [1,2,3,4].some(value => value === 1)   => true  （刚开始就结束了遍历）
+
+        [1,2,3,4].some(value => value === 6)  => false  （会完成遍历，直到最后）
 
 
-    
+## Array.every(callback)
+
+    使用说明 ：
+
+        对数组 进行遍历， 如果 callback() 返回 false 则中止 遍历，返回 false,
+        否则 返回 true
+        callback 提供的参数 如下：
+            callback(value, index, arr)
+
+            value => 被遍历的值
+            index => 被遍历值的 索引
+            arr =>  当前 被遍历的数组
+
+    使用方法：
+        
+        [1,2,3,4].every(value => value === 4)   => true  (会完成 遍历，直到最后)
+
+        [1,2,3,4].every(value => value === 6)  => false （还没开始就结束了）
+
+    注： 跟 Array.some() 刚好相反
+
+## Array.map(callback)
+
+    使用说明 ：
+
+        对数组 进行遍历，并获取每一次遍历 callback() 返回的值 组成一个新数组
+        
+        callback 提供的参数 如下：
+            callback(value, index, arr)
+
+            value => 被遍历的值
+            index => 被遍历值的 索引
+            arr =>  当前 被遍历的数组
+
+    使用方法：
+        
+        [1,2,3,4].map(value => value + 1)   =>  [2,3,4,5]
+
+## Array.flatMap(callback)  `*ES6新增语法*`
+
+    使用说明 ：
+
+        对数组 进行遍历，并获取每一次遍历 callback() 返回的值 组成一个新数组，
+        与 arr.map() 不一样，他输出的结果 全进行 扁平 1 次
+        
+        callback 提供的参数 如下：
+            callback(value, index, arr)
+
+            value => 被遍历的值
+            index => 被遍历值的 索引
+            arr =>  当前 被遍历的数组
+
+    使用方法：
+        
+        [1,2,3,4].flatMap(value => [value + 1])   =>  [2,3,4,5]
+
+
+
+## Array.find(callback)   `*ES6新增语法*`
+
+    使用说明 ：
+
+        对数组 进行遍历，如果 callback() 返回 true ,
+        则获取 该元素 的值 并返回 ，否则返回 undefine
+        
+        callback 提供的参数 如下：
+            callback(value, index, arr)
+
+            value => 被遍历的值
+            index => 被遍历值的 索引
+            arr =>  当前 被遍历的数组
+
+    使用方法：
+        
+        [1,2,3,4].find(value => value === 2)   =>  2
+
+## Array.filter(callback)
+
+    使用说明 ：
+
+        对数组 进行遍历，如果 callback() 返回 true ,
+        则筛选出 返回为 true 的值 数组 一个新的数组，并返回
+        
+        callback 提供的参数 如下：
+            callback(value, index, arr)
+
+            value => 被遍历的值
+            index => 被遍历值的 索引
+            arr =>  当前 被遍历的数组 
+
+    使用方法：
+        
+        [1,2,3,4].filter(value => value > 2)   =>  [3, 4]
+
+## Array.findIndex(callback)  `*ES6新增语法*`
+
+    使用说明 ：
+
+        对数组 进行遍历，如果 callback() 返回 true ,
+        则返回 该 元素的 index 索引 值
+        
+        callback 提供的参数 如下：
+            callback(value, index, arr)
+
+            value => 被遍历的值
+            index => 被遍历值的 索引
+            arr =>  当前 被遍历的数组 
+
+    使用方法：
+        
+        [1,2,3,4].findIndex(value => value === 2)   =>  1
+
+## Array.reduce(callback, firstValue)
+
+
+    使用说明 ：
+
+        callback 提供的参数 如下：
+            callback(value, realValue, index, arr)
+
+            value => 上一次callback() 的返回值
+            realValue => 当前元素
+            index  =>  当前元素的索引  
+            arr => 当前遍历 数组 
+        
+        firstValue => 作为第一次调用 callback函数时的第一个参数的值。 如果没有提供初始值，则将使用数组中的第一个元素。 在没有初始值的空数组上调用 reduce 将报错。
+
+        对数组 进行遍历，取 callback()  返回的值 作为第一个 callback 的参数 value，
+        取当前 元素 作为 callback 第二个 参数 realValue,
+        返回最后 一次 遍历 callback() 返回的值
+
+
+
+    使用方法：
+        
+        [1,2,3,4].reduce((value, realValue) => value + realValue)   =>  10
+
+        [1,2,3,4].reduce((value, realValue) => value + realValue , 1)  => 11
+
+        [1,2,3,4].reduce((value, realValue) => value)  => 1
+
+
+        注意：如果没有提供firstValue，reduce 会从索引1的地方开始执行 callback 方法，跳过第一个索引，
+
+        取第一个值 作为 value 参数 ，取第二个值 作为 realValue;
+        
+        如果提供firstValue，从索引0开始。
+        
          
+## Array.reduceRight(callback, firstValue)
 
+
+    使用说明 ：
+
+        callback 提供的参数 如下：
+            callback(value, realValue, index, arr)
+
+            value => 上一次callback() 的返回值
+            realValue => 当前元素
+            index  =>  当前元素的索引  
+            arr => 当前遍历 数组 
+        
+        firstValue => 作为第一次调用 callback函数时的第一个参数的值。 如果没有提供初始值，则将使用数组中的最后一个元素。 在没有初始值的空数组上调用 reduce 将报错。
+
+        对数组 进行遍历，取 callback()  返回的值 作为第一个 callback 的参数 value，
+        取当前 元素 作为 callback 第二个 参数 realValue,
+        返回最后 一次 遍历 callback() 返回的值
+
+
+
+    使用方法：
+        
+        [1,2,3,4].reduceRight((value, realValue) => value + realValue)   =>  10
+
+        [1,2,3,4].reduceRight((value, realValue) => value + realValue , 1)  => 11
+
+        [1,2,3,4].reduceRight((value, realValue) => value)  => 4
+
+
+        注意：如果没有提供firstValue，reduce 会从索引右边开始 第二个 的地方开始执行 callback 方法，跳过最后一个索引，
+
+        取最后一个值 作为 value 参数 ，取倒数第二个值 作为 realValue;
+        
+        如果提供firstValue，从索引最后一个开始。
+
+
+        此方法刚好 与 Array.reduce() 方法 意思相反
             
