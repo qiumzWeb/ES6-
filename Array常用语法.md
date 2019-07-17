@@ -37,7 +37,7 @@
         Array.of(1,2,3,4) =>  [1,2,3,4]
 
 
-# Array 原型 继续 的方法
+# Array 原型 继承 的方法
 # 会改变原数组的方法
 
 ## Array.copyWithin(index, start = 0, end = this.length)   `*ES6 新增语法*`
