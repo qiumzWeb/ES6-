@@ -1,4 +1,6 @@
-#配置项 Options
+
+
+# 配置项 Options
 
 ## 输出图片宽
 
@@ -120,16 +122,26 @@ toggleDragModeOnDblclick: true,
 
 ## 尺寸限制
 minCanvasWidth: 0,
+
 minCanvasHeight: 0,
+
 minCropBoxWidth: 100,
+
 minCropBoxHeight: 100,
+
 minContainerWidth: 200,
+
 minContainerHeight: 100,
 
 ## 事件快捷方式
 ready: null,
+
 cropstart: null,
+
 cropmove: null,
+
 cropend: null,
+
 crop: null,
+
 zoom: null,
