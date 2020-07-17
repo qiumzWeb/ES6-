@@ -1,0 +1,28 @@
+// 深度 合并
+export const _DeepAssign = function(...args) {
+  if (args.some(a => !isObj(a) && isTrue(a))) {
+    throw new Error('all args must be a Object')
+  }
+  if (!args[0]) throw new Error('target must be a Object')
+  return args.reduce(mergeObj)
+}
+
+export function mergeObj(a, b) {
+  isObj(b) && Object.keys(a).forEach(k => {
+    if (isObj(a[k]) && isObj(b[k])) {
+      mergeObj(a[k], b[k])
+    } else {
+      b.hasOwnProperty(k) && (a[k] = b[k])
+    }
+  })
+  Object.assign(a, b)
+  return a
+}
+
+export function isObj(target) {
+  return target !== null && typeof target === 'object'
+}
+
+export function isTrue(target) {
+  return target !== null && target !== undefined && target !== ''
+}
