@@ -8,14 +8,13 @@ export const _DeepAssign = function(...args) {
 }
 
 export function mergeObj(a, b) {
-  isObj(b) && Object.keys(a).forEach(k => {
+  isObj(a) && isObj(b) && Object.keys(b).forEach(k => {
     if (isObj(a[k]) && isObj(b[k])) {
       mergeObj(a[k], b[k])
     } else {
-      b.hasOwnProperty(k) && (a[k] = b[k])
+      a[k] = b[k]
     }
   })
-  Object.assign(a, b)
   return a
 }
 
