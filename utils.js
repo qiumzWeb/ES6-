@@ -134,3 +134,9 @@ window._DeepAssign = _DeepAssign
 export function getUuid(s) {
   return s + (Date.now().toString(32) + Math.random() * Math.pow(10, 5)).split('.')[0]
 }
+// 千分位金额
+export function formatMoney(num, decimal = 2) {
+  if (isNaN(num) || !num) return num
+  const newNum = (+(+num).toFixed(decimal)) + ''
+  return `${newNum.replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,')}`
+}
