@@ -25,3 +25,11 @@ export function isObj(target) {
 export function isTrue(target) {
   return target !== null && target !== undefined && target !== ''
 }
+
+// 深度克隆
+export const _DeepClone = (Obj) => {
+  if (isObj(Obj)) {
+    return _DeepAssign(JSON.parse(JSON.stringify(Obj)), Obj)
+  }
+  return Obj
+}
